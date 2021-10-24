@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Tebak Gaya</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <style>
+        .font-size-button {
+            font-size: 50px;
+        }
+        .timer-countdown {
+            position: fixed;
+            right: 50px;
+            top: 30px;
+            width: 165px;
+            height: 70px;
+            text-align: center;
+            color: #fff;
+            background: rgba(52,58,64,.5);
+            line-height: 60px;
+            z-index: 999;
+            font-size: 75px;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+    <!-- <a class="menu-toggle" href="index.html"><i class="fa fa-home"></i></a> -->
+    <div class="timer-countdown">
+        <span id="timer"></span>
+    </div>
+    <header class="d-flex masthead" style="background-image:url('assets/img/bg-masthead.jpg');">
+        <div class="container text-center my-auto">
+            <!-- <h1 class="mb-1">Tebak Gaya</h1>
+            <p>&nbsp;</p> -->
+            <form action="" id="point-count">
+                <div class="container-fluid">
+                    <!-- <h1 class="text-center my-3">Projects and Sites</h1> -->
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner w-100 mx-auto">
+                        <div class="carousel-item active">
+                          <div class="card">
+                            <div class="card-body">
+                              <h3 class="card-title">Soal 1</h3>
+                              <h1 class="card-text">Gajah Berkumis</h1>
+                              <h3 class="card-text">
+                                <input type="checkbox">
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="carousel-item">
+                          <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Soal 2</h3>
+                                <h1 class="card-text">Isolasi Mandiri</h1>
+                                <h3 class="card-text">
+                                  <input type="checkbox">
+                                </h3>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="carousel-item">
+                          <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Soal 3</h3>
+                                <h1 class="card-text">Gedung SDM</h1>
+                                <h3 class="card-text">
+                                  <input type="checkbox">
+                                </h3>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="carousel-item">
+                          <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Soal 4</h3>
+                                <h1 class="card-text">Kerak Telor</h1>
+                                <h3 class="card-text">
+                                  <input id="testcheck" type="checkbox">
+                                </h3>
+                            </div>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card">
+                              <div class="card-body">
+                                <h3 class="card-title">Soal 5</h3>
+                                <h1 class="card-text">Durian Runtuh</h1>
+                                <h3 class="card-text">
+                                    <input type="checkbox">
+                                </h3>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-12 text-center mt-4">
+                            <a class="btn btn-outline-secondary mx-1 prev" href="javascript:void(0)" title="Previous">
+                              <i class="fa fa-lg fa-chevron-left"></i>
+                            </a>
+                            <a class="btn btn-outline-secondary mx-1 next" href="javascript:void(0)" title="Next">
+                              <i class="fa fa-lg fa-chevron-right"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <p>&nbsp;</p> -->
+                  <h1>
+                    <span id="count-checked-checkboxes">0</span> Poin
+                  </h2>
+                  
+            </form>
+            <p>&nbsp;</p>
+            <a class="btn btn-primary" href="index.html">Selesai</a>
+        </div>
+    </header>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="assets/js/stylish-portfolio.js"></script>
+    <script>
+            // Auto-scroll
+            $('#myCarousel').carousel({
+                interval: 5000000
+            });
+
+            // Control buttons
+            $('.next').click(function () {
+                $('.carousel').carousel('next');
+                return false;
+            });
+            $('.prev').click(function () {
+                $('.carousel').carousel('prev');
+                return false;
+            });
+
+            // On carousel scroll
+            $("#myCarousel").on("slide.bs.carousel", function (e) {
+                var $e = $(e.relatedTarget);
+                var idx = $e.index();
+                var itemsPerSlide = 1;
+                var totalItems = $(".carousel-item").length;
+                if (idx >= totalItems - (itemsPerSlide - 1)) {
+                var it = itemsPerSlide -
+                    (totalItems - idx);
+                for (var i = 0; i < it; i++) {
+                    // append slides to end 
+                    if (e.direction == "left") {
+                    $(
+                        ".carousel-item").eq(i).appendTo(".carousel-inner");
+                    } else {
+                    $(".carousel-item").eq(0).appendTo(".carousel-inner");
+                    }
+                }
+                }
+            });
+            (jQuery);
+
+            //timer
+            document.getElementById('timer').innerHTML = 03 + ":" + 01;
+            startTimer();
+
+            function startTimer() {
+            var presentTime = document.getElementById('timer').innerHTML;
+            var timeArray = presentTime.split(/[:]+/);
+            var m = timeArray[0];
+            var s = checkSecond((timeArray[1] - 1));
+            if(s==59){m=m-1}
+            if(m<0){
+                return
+            }
+            
+            document.getElementById('timer').innerHTML =
+                m + ":" + s;
+            console.log(m)
+            setTimeout(startTimer, 1000);
+            
+            }
+
+            function checkSecond(sec) {
+            if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+            if (sec < 0) {sec = "59"};
+            return sec;
+            }
+            
+            // count poin
+            $(document).ready(function(){
+
+            var $checkboxes = $('#point-count input[type="checkbox"]');
+                
+            $checkboxes.change(function(){
+                var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
+                $('#count-checked-checkboxes').text(countCheckedCheckboxes);
+                
+                $('#edit-count-checked-checkboxes').val(countCheckedCheckboxes);
+            });
+
+            });
+    </script>
+</body>
+
+</html>
